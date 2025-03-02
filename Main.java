@@ -3,6 +3,8 @@ package org.example.Assig2;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
@@ -18,6 +20,10 @@ public class Main {
 
         ParkingStatistics statistics = context.getBean(ParkingStatistics.class);
         statistics.showStats();
+
+        ParkingRepository repository = context.getBean(ParkingRepository.class);
+        List<Car> parkedCars = repository.getAllParkedCars();
+        System.out.println("All parked cars: " + parkedCars);
 
         context.close();
     }
